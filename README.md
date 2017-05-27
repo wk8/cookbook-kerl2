@@ -23,8 +23,7 @@ Additionally, if you need to use the default `kerl`-managed erlang in a Chef-tem
 
 source <%= node['kerl2']['shell_profile']['file'] %>
 
-exec <%= node['runit']['chpst_bin'] -u user:group my_erlang_service
-
+exec <%= node['runit']['chpst_bin'] %> -u user:group my_erlang_service
 ```
 
 For more exotic use cases, simply set `node['kerl2']['erlangs']` to an empty array, and use the resources this cookbook provides:
@@ -78,7 +77,7 @@ build_name = '19.3-with-docs-and-hipe'
 kerl_build build_name do
   release '19.3'
   build_env({
-    'KERL_BUILD_DOCS' => 'yes'
+    'KERL_BUILD_DOCS' => 'yes',
     'KERL_CONFIGURE_OPTIONS' => '‐‐enable‐hipe'
   })
 
